@@ -1,0 +1,15 @@
+rp = 0.001;          
+rs = 0.001;       
+f1 = [5000 8000];  
+f2 = [12000 15000];
+fs=44100;
+a = [1 0];       
+dev = [(10^(rp/20)-1)/(10^(rp/20)+1)  10^(-rs/20)];  
+[n,f01,ao,w] = firpmord(f1,a,dev,fs) ;
+b = firpm(n,f01,ao,w); 
+freqz(b,1,1024,fs);
+title('FIR');
+[n,f02,ao,w] = firpmord(f2,a,dev,fs) ;
+b1 = firpm(n,f02,ao,w); 
+freqz(b1,1,1024,fs);
+title('FIR2');
